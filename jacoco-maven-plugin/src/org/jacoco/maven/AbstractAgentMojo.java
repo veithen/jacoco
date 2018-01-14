@@ -86,6 +86,12 @@ public abstract class AbstractAgentMojo extends AbstractJacocoMojo {
 	@Parameter(property = "jacoco.sessionId")
 	String sessionId;
 	/**
+	 * A prefix for automatically generated session identifiers. Without this
+	 * parameter the local host name will be used.
+	 */
+	@Parameter(property = "jacoco.sessionIdPrefix")
+	String sessionIdPrefix;
+	/**
 	 * If set to true coverage data will be written on VM shutdown.
 	 */
 	@Parameter(property = "jacoco.dumpOnExit")
@@ -191,6 +197,9 @@ public abstract class AbstractAgentMojo extends AbstractJacocoMojo {
 		}
 		if (sessionId != null) {
 			agentOptions.setSessionId(sessionId);
+		}
+		if (sessionIdPrefix != null) {
+			agentOptions.setSessionIdPrefix(sessionIdPrefix);
 		}
 		if (dumpOnExit != null) {
 			agentOptions.setDumpOnExit(dumpOnExit.booleanValue());

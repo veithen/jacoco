@@ -99,6 +99,12 @@ public final class AgentOptions {
 	public static final String SESSIONID = "sessionid";
 
 	/**
+	 * Specifies a prefix for automatically generated session identifiers.
+	 * Without this parameter the local host name will be used.
+	 */
+	public static final String SESSIONIDPREFIX = "sessionidprefix";
+
+	/**
 	 * Specifies whether the agent will automatically dump coverage data on VM
 	 * exit. Default is <code>true</code>.
 	 */
@@ -190,8 +196,9 @@ public final class AgentOptions {
 
 	private static final Collection<String> VALID_OPTIONS = Arrays.asList(
 			DESTFILE, APPEND, INCLUDES, EXCLUDES, EXCLCLASSLOADER,
-			INCLBOOTSTRAPCLASSES, INCLNOLOCATIONCLASSES, SESSIONID, DUMPONEXIT,
-			OUTPUT, ADDRESS, PORT, CLASSDUMPDIR, JMX);
+			INCLBOOTSTRAPCLASSES, INCLNOLOCATIONCLASSES, SESSIONID,
+			SESSIONIDPREFIX, DUMPONEXIT, OUTPUT, ADDRESS, PORT, CLASSDUMPDIR,
+			JMX);
 
 	private final Map<String, String> options;
 
@@ -419,6 +426,25 @@ public final class AgentOptions {
 	 */
 	public void setSessionId(final String id) {
 		setOption(SESSIONID, id);
+	}
+
+	/**
+	 * Returns the prefix for automatically generated session identifiers.
+	 * 
+	 * @return the prefix
+	 */
+	public String getSessionIdPrefix() {
+		return getOption(SESSIONIDPREFIX, null);
+	}
+
+	/**
+	 * Sets the prefix for automatically generated session identifiers.
+	 * 
+	 * @param prefix
+	 *            the prefix
+	 */
+	public void setSessionIdPrefix(final String prefix) {
+		setOption(SESSIONIDPREFIX, prefix);
 	}
 
 	/**

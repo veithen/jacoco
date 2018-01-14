@@ -106,6 +106,17 @@ public class AgentTest implements IExceptionLogger, IAgentOutput {
 	}
 
 	@Test
+	public void startup_should_use_session_id_prefix() {
+		options.setSessionId(null);
+		options.setSessionIdPrefix("myprefix");
+
+		Agent agent = createAgent();
+		agent.startup();
+
+		assertTrue(agent.getData().getSessionId().startsWith("myprefix-"));
+	}
+
+	@Test
 	public void startup_should_log_exception() throws Exception {
 		final Exception expected = new Exception();
 		Agent agent = new Agent(options, this) {

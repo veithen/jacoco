@@ -167,15 +167,17 @@ public class Agent implements IAgent {
 	}
 
 	private String createSessionId() {
-		String host;
-		try {
-			host = InetAddress.getLocalHost().getHostName();
-		} catch (final Exception e) {
-			// Also catch platform specific exceptions (like on Android) to
-			// avoid bailing out here
-			host = "unknownhost";
+		String prefix = options.getSessionIdPrefix();
+		if (prefix == null) {
+			try {
+				prefix = InetAddress.getLocalHost().getHostName();
+			} catch (final Exception e) {
+				// Also catch platform specific exceptions (like on Android) to
+				// avoid bailing out here
+				prefix = "unknownhost";
+			}
 		}
-		return host + "-" + AbstractRuntime.createRandomId();
+		return prefix + "-" + AbstractRuntime.createRandomId();
 	}
 
 	// === IAgent Implementation ===

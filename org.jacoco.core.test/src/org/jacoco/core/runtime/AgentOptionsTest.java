@@ -267,6 +267,20 @@ public class AgentOptionsTest {
 	}
 
 	@Test
+	public void testGetSessionIdPrefix() {
+		AgentOptions options = new AgentOptions("sessionidprefix=testprefix");
+		assertEquals("testprefix", options.getSessionIdPrefix());
+	}
+
+	@Test
+	public void testSetSessionIdPrefix() {
+		AgentOptions options = new AgentOptions();
+		options.setSessionIdPrefix("testprefix");
+		assertEquals("testprefix", options.getSessionIdPrefix());
+		assertEquals("sessionidprefix=testprefix", options.toString());
+	}
+
+	@Test
 	public void testGetDumpOnExit() {
 		AgentOptions options = new AgentOptions("dumponexit=false");
 		assertFalse(options.getDumpOnExit());

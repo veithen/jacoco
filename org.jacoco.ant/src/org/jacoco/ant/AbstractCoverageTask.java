@@ -147,6 +147,17 @@ public class AbstractCoverageTask extends Task {
 	}
 
 	/**
+	 * Sets the prefix for auto-generated session identifiers. Default is the
+	 * local host name.
+	 * 
+	 * @param prefix
+	 *            the prefix
+	 */
+	public void setSessionIdPrefix(final String prefix) {
+		agentOptions.setSessionIdPrefix(prefix);
+	}
+
+	/**
 	 * Dump coverage data on VM termination. Default is <code>true</code>
 	 * 
 	 * @param dumpOnExit
